@@ -55,18 +55,22 @@ Grab the address of the first byte of the preceeding 16 bytes before "None". Thi
 Our GNames should conform to the FNameEntry struct above, which means it should look like this in memory:
 
 ```
-00 00 00 00 00 00 00 00 // index
-00 00 00 00 00 00 00 00 // pointer to next entry in linked list
-00 00 00 00 00 00 00 00 // bytes representing f.ex. ANSICHAR name, in this case "None"
------------------------
-00 00 00 00 00 00 00 00 // index
-00 00 00 00 00 00 00 00 // pointer to next entry in linked list
-00 00 00 00 00 00 00 00 // ANSICHAR name, in this case "ByteProperty"
+5E 60 2D 35                             // ??
+F5 7F 00 08                             // index
+98 12 6F 0B 00 00 00 00                 // pointer to next entry in linked list
+4E 6F 6E 65 00                          // string "None"
+00 00 00                                
+--------------------------------------
+5E 60 2D 35                             // ??
+F5 7F 00 10                             // index
+08 FA FE 0F 00 00 00 00                 // pointer to next entry in linked list
+42 79 74 65 50 72 6F 70 65 72 74 79 00  // string "ByteProperty"
+00 00 00
 ```
 
 It's a little bit difficult to visualise this in Cheat Engine's memory view so let's dissect the data/structures starting from the address we grabbed earlier:
 
-![Alt 1-png](https://raw.githubusercontent.com/untyper/ue4-gnames-gobjects-guide/main/img/1.png)
+![Alt 2-png](https://raw.githubusercontent.com/untyper/ue4-gnames-gobjects-guide/main/img/2.png)
 
 We can see the same pattern.
 So we now have the address to GNames.
