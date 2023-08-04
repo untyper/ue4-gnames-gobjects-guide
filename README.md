@@ -54,7 +54,7 @@ You will most likely get multiple results. Maybe less than 10 maybe more than 10
 In my experience searching for "ByteProperty" has never resulted in more than 300 results.
 Usually GNames is the first result but there is no guarantee, so just click away until you find the correct one.
 
-You know you have found the correct one when "None" is preceded by 16 bytes on 64-bit and nothing else (or question marks) AND followed by "ByteProperty", etc, etc
+You know you have found the correct address when "None" is preceded by 16 bytes on 64-bit and nothing else (or question marks) AND followed by "ByteProperty", etc, etc
 
 Grab the address of the first byte of the preceeding 16 bytes before "None". This is the begining of our GNames.
 
