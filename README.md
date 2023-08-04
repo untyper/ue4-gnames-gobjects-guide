@@ -3,6 +3,7 @@
 > // GObjects are arrays of FUObject???
 
 GNames are arrays of `FNameEntry`
+
 `FNameEntry` is a struct that looks like this in the source:
 
 ```c++
