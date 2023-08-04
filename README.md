@@ -6,11 +6,11 @@
 - Unreal Engine 4.1X source files
 - Cheat Engine
 
-> // GObjects are arrays of FUObject???
+> // GObjects is an array of FUObject???
 
-GNames are arrays of `FNameEntry`
+GNames is an array of `FNameEntry` structures.
 
-`FNameEntry` is a struct that looks like this in the source:
+This is what it looks like in the source:
 
 ```c++
 struct FNameEntry
