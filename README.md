@@ -52,28 +52,32 @@ You know you have found the correct one when "None" is preceded by 16 bytes on 6
 
 Grab the address of the first byte of the preceeding 16 bytes before "None". This is the begining of our GNames.
 
-Our GNames should conform to the FNameEntry struct above, which means it should look like this in memory:
+![Alt 1-png](https://raw.githubusercontent.com/untyper/ue4-gnames-gobjects-guide/main/img/1.png)
+
+Our GNames should conform to the FNameEntry struct above, but it's a little bit difficult to visualise this in Cheat Engine's memory view so let's reorganize the bytes a little bit:
 
 ```
 5E 60 2D 35                             // ??
-F5 7F 00 08                             // index
-98 12 6F 0B 00 00 00 00                 // pointer to next entry in linked list
-4E 6F 6E 65 00                          // string "None"
+F5 7F 00 08                             // Index
+98 12 6F 0B 00 00 00 00                 // HashNext
+4E 6F 6E 65 00                          // AnsiName "None"
 00 00 00                                
 --------------------------------------
 5E 60 2D 35                             // ??
-F5 7F 00 10                             // index
-08 FA FE 0F 00 00 00 00                 // pointer to next entry in linked list
-42 79 74 65 50 72 6F 70 65 72 74 79 00  // string "ByteProperty"
+F5 7F 00 10                             // Index
+08 FA FE 0F 00 00 00 00                 // HashNext
+42 79 74 65 50 72 6F 70 65 72 74 79 00  // AnsiName "ByteProperty"
 00 00 00
+...
+... etc.
 ```
 
-It's a little bit difficult to visualise this in Cheat Engine's memory view so let's dissect the data/structures starting from the address we grabbed earlier:
+Let's also dissect the data/structures:
 
 ![Alt 2-png](https://raw.githubusercontent.com/untyper/ue4-gnames-gobjects-guide/main/img/2.png)
 
-We can see the same pattern.
-So we now have the address to GNames.
+It's the same pattern.
+We can now confidently say that we have found the GNames address.
 
 The next step is to figure out whether this address is static or not. If it is static, then we can get an offset to it by substracting the base address from it:
 `GameBaseAddr - GNamesAddr = Offset to GNames from GameBaseAddr`
