@@ -27,7 +27,8 @@ protected:
 }
 ```
 
-Most GName arrays begin with FNameEntries: "None", "ByteProperty" etc, followed by the games unique FNameEntries
+Most GName arrays begin with FNameEntries: "None", "ByteProperty" etc, followed by the games unique FNameEntries.
+
 For example "ByteProperty" FNameEntry would look like this in code:
 
 ```c++
