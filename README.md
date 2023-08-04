@@ -1,5 +1,11 @@
 # How to find Unreal Engine 4.1X GNames and GObjects
 
+### Requirements
+
+- C++ knowledge
+- Unreal Engine 4.1X source files
+- Cheat Engine
+
 > // GObjects are arrays of FUObject???
 
 GNames are arrays of `FNameEntry`
@@ -72,7 +78,7 @@ F5 7F 00 10                             // Index
 ... etc.
 ```
 
-Let's also dissect the data/structures:
+Let's also dissect the data/structures (Memory View -> Tools -> Dissect data/structures)
 
 ![Alt 2-png](https://raw.githubusercontent.com/untyper/ue4-gnames-gobjects-guide/main/img/2.png)
 
@@ -81,10 +87,11 @@ We can now confidently say that we have found the GNames address.
 
 The next step is to figure out whether this address is static or not. If it is static, then we can get an offset to it by substracting the base address from it:
 `GameBaseAddr - GNamesAddr = Offset to GNames from GameBaseAddr`
-We can use this to get our GNames every time without having to worry about it changing address everytime we reopen the game... until the game gets updated that is :-) in which case you have to repeat the previous steps again.
+We can use this to get our GNames every time without having to worry about the address changing everytime we reopen the game... until the game gets updated that is :-) in which case you have to repeat the previous steps again.
 
-If GNames is dynamic on the other hand you won't be able to substract the GameBaseAddr from it without either getting a negative number back or pointing to the wrong address.
-Regardless, we have atleast two ways of getting something static to use in our code when our GNames location is dynamic, they are:
+If GNames is dynamic you won't be able to substract the GameBaseAddr from it without either getting a negative number or a wrong address.
+Still, we have atleast two ways of getting something static to use in our code when our GNames location is dynamic, they are:
+
 - Find a static pointer (or static multilevel pointer) that points to our GNames address --> Trickier to find but faster and more reliable in your application
 - Signature scan using patterns of bytes --> Can be easier to implement but can be less reliable and slow down your application
 
